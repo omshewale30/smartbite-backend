@@ -150,10 +150,7 @@ async function getIngredientsFromImage(imagePath) {
         throw error; // Re-throw the error to be caught by the main handler
     }
 }
-app.use((req, res, next) => {
-    res.setHeader('Access-Control-Allow-Origin', "*"); // Or * for all origins
-    next();
-});
+
 app.get("/", (req, res) => res.send("Express on Vercel"));
 app.post("/ingredients", upload.single("image"), async (req, res) => {
     let ingredients = req.body.ingredients;
