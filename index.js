@@ -45,16 +45,38 @@ const location = "us-central1";
 const textModel = "gemini-1.0-pro";
 const visionModel = "gemini-1.0-pro-vision";
 
+
+export const getGCPCredentials = () => {
+    // for Vercel, use environment variables
+    return process.env.GCP_PRIVATE_KEY
+        ? {
+            credentials: {
+                client_email: process.env.GCP_SERVICE_ACCOUNT_EMAIL,
+                private_key: process.env.GCP_PRIVATE_KEY,
+            },
+            projectId: process.env.GCP_PROJECT_ID,
+        }
+        // for local development, use gcloud CLI
+        : {};
+};
+
 const vertexAI = new VertexAI({
-    project,
-    location,
-    googleAuthOptions: {
-        credentials: {
-            client_email: process.env.GCP_CLIENT_EMAIL,
-            private_key: process.env.GCP_PRIVATE_KEY,
-        },
-    },
+    project: process.env.GCP_PROJECT_ID,
+    location: process.env.GCP_REGION,
+    googleAuthOptions: getGCPCredentials()
 });
+
+
+// const vertexAI = new VertexAI({
+//     project,
+//     location,
+//     googleAuthOptions: {
+//         credentials: {
+//             client_email: process.env.GCP_CLIENT_EMAIL,
+//             private_key: process.env.GCP_PRIVATE_KEY,
+//         },
+//     },
+// });
 const textGenerativeModel = vertexAI.getGenerativeModel({
     model: textModel,
     safetySettings: [
