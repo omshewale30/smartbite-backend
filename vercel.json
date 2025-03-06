@@ -11,6 +11,6 @@
   [
     {
       "src": "/(.*)",
-      "destination": "index.js"
+      "dest": "index.js"
     }
 ]}
