@@ -151,7 +151,6 @@ async function getIngredientsFromImage(imagePath) {
     }
 }
 
-app.get("/", (req, res) => res.send("Express on Vercel"));
 app.post("/ingredients", upload.single("image"), async (req, res) => {
     let ingredients = req.body.ingredients;
 
