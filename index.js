@@ -42,7 +42,7 @@ const upload = multer({ storage: storage, limits: { fileSize: 10 * 1024 * 1024 }
 // Vertex AI Setup
 const project = "studied-brand-452423-t6"; // Replace with your Google Cloud project ID
 const location = "us-central1";
-const textModel = "gemini-1.0-pro";
+const textModel = "gemini-2.0-flash-001"
 const visionModel = "gemini-1.0-pro-vision";
 
 
